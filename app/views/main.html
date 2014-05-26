@@ -1,36 +1,57 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">clash</h3>
+	<ul class="nav nav-pills pull-right">
+		<li class="active"><a ng-href="#">Home</a></li>
+		<li><a >How to Play</a></li>
+	</ul>
+	<h3 class="text-muted">Clash</h3>
 </div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+
+
+	<div class="right-aside score">{{score}}</div>
+	<div class="right-aside clash-btn"  ng-click="clash()"><span class="glyphicon glyphicon-remove"></span></div>
+
+	<div class="left-aside moves-left">
+
+		<div class="gem"  ng-repeat="a in range(MAXMOVESLEFT) track by $index" ng-class="displayClass.getGemClass($index)"></div>
+
+	</div>
+
+
+	<div class="squad">
+		<div class="squad-row" ng-repeat="row in enemyMatrix">
+
+			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(1,soldier)"
+				ng-class="displayClass.highlighted(soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(0,soldier)" ng-click="reportPos(soldier)">{{soldier.attack}}/{{soldier.health}}</div>
+
+		</div>
+
+	</div>
+
+	<hr/>
+
+	<div class="squad" >
+		<div class="squad-row" ng-repeat="row in matrix">
+
+			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)" ng-class="displayClass.selected(soldier);displayClass.highlighted(soldier)" >{{soldier.attack}}/{{soldier.health}}</div>
+
+
+
+
+		</div>
+
+
+	</div>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="result">
+	<div>{{score}}</div>
+	<div>{{hightScore}}</div>
+	<button ng-click="resetGame()">restart</button>
 </div>
+
 
 <div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+	<p>Made without <span class="glyphicon glyphicon-heart"></span> by Ruocaled</p>
 </div>

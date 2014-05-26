@@ -1,0 +1,109 @@
+/* css3 animations */
+/*tada effect*/
+@-webkit-keyframes tada {
+/* line 23, style.scss */
+  0% {
+	-webkit-transform: scale(1);
+  }
+
+/* line 26, style.scss */
+  10%, 20% {
+	-webkit-transform: scale(0.9) rotate(-3deg);
+  }
+
+/* line 29, style.scss */
+  30%, 50%, 70%, 90% {
+	-webkit-transform: scale(1.1) rotate(3deg);
+  }
+
+/* line 32, style.scss */
+  40%, 60%, 80% {
+	-webkit-transform: scale(1.1) rotate(-3deg);
+  }
+
+/* line 35, style.scss */
+  100% {
+	-webkit-transform: scale(1) rotate(0);
+  }
+}
+
+@-moz-keyframes tada {
+/* line 23, style.scss */
+  0% {
+	-webkit-transform: scale(1);
+  }
+
+/* line 26, style.scss */
+  10%, 20% {
+	-webkit-transform: scale(0.9) rotate(-3deg);
+  }
+
+/* line 29, style.scss */
+  30%, 50%, 70%, 90% {
+	-webkit-transform: scale(1.1) rotate(3deg);
+  }
+
+/* line 32, style.scss */
+  40%, 60%, 80% {
+	-webkit-transform: scale(1.1) rotate(-3deg);
+  }
+
+/* line 35, style.scss */
+  100% {
+	-webkit-transform: scale(1) rotate(0);
+  }
+}
+
+@-o-keyframes tada {
+/* line 23, style.scss */
+  0% {
+	-webkit-transform: scale(1);
+  }
+
+/* line 26, style.scss */
+  10%, 20% {
+	-webkit-transform: scale(0.9) rotate(-3deg);
+  }
+
+/* line 29, style.scss */
+  30%, 50%, 70%, 90% {
+	-webkit-transform: scale(1.1) rotate(3deg);
+  }
+
+/* line 32, style.scss */
+  40%, 60%, 80% {
+	-webkit-transform: scale(1.1) rotate(-3deg);
+  }
+
+/* line 35, style.scss */
+  100% {
+	-webkit-transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes tada {
+/* line 23, style.scss */
+  0% {
+	-webkit-transform: scale(1);
+  }
+
+/* line 26, style.scss */
+  10%, 20% {
+	-webkit-transform: scale(0.9) rotate(-3deg);
+  }
+
+/* line 29, style.scss */
+  30%, 50%, 70%, 90% {
+	-webkit-transform: scale(1.1) rotate(3deg);
+  }
+
+/* line 32, style.scss */
+  40%, 60%, 80% {
+	-webkit-transform: scale(1.1) rotate(-3deg);
+  }
+
+/* line 35, style.scss */
+  100% {
+	-webkit-transform: scale(1) rotate(0);
+  }
+}

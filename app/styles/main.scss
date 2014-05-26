@@ -2,6 +2,11 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
+@import "compass";
+@import "mixins";
+@import "animations";
+
+
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
@@ -55,6 +60,82 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 1px solid #e5e5e5;
+  	width:700px;
+	position: relative;
+
+  	.gem{
+	  width: 10px;
+	  height: 10px;
+	  display: block;
+	  padding: 0;
+	  margin: 5px 5px ;
+	  border-radius: 25%;
+	  @include transition(all 500ms);
+	  &.gem-full{
+
+		background-color: #48AFC1;
+	  }
+	  &.gem-empty{
+		background-color:#E4837C;
+
+	  }
+	}
+
+    .right-aside{
+		position: absolute;
+		right: -50px;
+		width: 50px;
+		text-align: left;
+		padding: 5px 10px;
+	  	color:white;
+	  	font-size: 20px;
+	    &.score{
+		  background-color: #E4837C;
+		  top:150px;
+		}
+	  &.high-score{
+		background-color: #E4837C;
+
+	  }
+	  &.clash-btn{
+		cursor: pointer;
+
+		top:100px;
+		background-color: #B4C63B;
+
+		span {
+		  @include transition(all 300ms);
+		  &:hover {
+			@include animation(tada 1s forwards);
+		  }
+		}
+
+	  }
+
+
+	}
+  	.left-aside{
+		position: absolute;
+	  left: -50px;
+	  width: 50px;
+	  text-align: right;
+	  padding: 5px 10px;
+	  color:white;
+	  font-size: 20px;
+	  &.turn{
+		background-color: #E4837C;
+		top:100px;
+	  }
+	  &.moves-left{
+		width: 20px;
+		left:-20px;
+		top:100px;
+		padding: 0;
+		background-color: #F0ECDB;
+
+	  }
+
+	}
 }
 
 .jumbotron .btn {
@@ -69,6 +150,63 @@ body {
 
 .marketing p + h4 {
     margin-top: 28px;
+}
+
+
+.squad {
+  width:580px;
+  height: 250px;
+  position: relative;
+}
+
+.squad-row {
+
+}
+
+.soldier {
+  @include transition(all ease-in 300ms);
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #269abc;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  border:4px white solid;
+  color:white;
+  line-height: 35px;
+  font-size: 15px;
+
+  &:hover, &.selected,{
+	box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+  }
+
+  &.highlighted {
+	box-shadow: 0px 0px 15px 5px rgba(38, 154, 188, .75);
+  }
+
+  &.tank{
+	background-color: #E4837C;
+  }
+  &.spear{
+	background-color: #48AFC1;
+
+  }
+  &.healer{
+	background-color: #B4C63B;
+
+  }
+  &.archer{
+	background-color: #F0ECDB;
+
+  }
+
+  &.dead{
+	background-color: #eeeeee;
+  }
+
 }
 
 /* Responsive: Portrait tablets and up */
