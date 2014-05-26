@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clashApp')
-	.controller('MainCtrl', function ($scope, Squad, Dead,Spear,Healer,Tank,Archer) {
+	.controller('MainCtrl', function ($scope, Squad, Dead,Spear,Healer,Tank,Archer,$timeout) {
 
 		var selected = null;
 		var targeted = null;
@@ -25,6 +25,8 @@ angular.module('clashApp')
 		$scope.movesLeft = 10;
 		$scope.MAXMOVESLEFT = $scope.movesLeft;
 		$scope.score = 0;
+
+		$scope.highScore = parseInt(localStorage['clashHightScore'] || 0);
 
 
 
@@ -70,6 +72,18 @@ angular.module('clashApp')
 			},
 			highlighted:function(soldier){
 				return inRanges.indexOf(soldier) !== -1 ? 'highlighted' : '';
+			},
+			clashAnimation:function(dir){
+				if(!$scope.clashAnimationOn){
+					return '';
+				}
+				if (dir === 'up'){
+					return 'bendup';
+				}
+				else{
+					return 'benddown';
+				}
+
 			},
 			getGemClass: function(index){
 
@@ -148,18 +162,46 @@ angular.module('clashApp')
 			'Karma'
 		];
 
+		$scope.runClashAnimation = function(){
+
+			$scope.clashAnimationOn = true;
+			$timeout(function(){
+
+				$scope.clashAnimationOn = false;
+
+			},1500);
+
+
+		};
+
 		$scope.clash = function () {
 
 			selected = null;
 			targeted = null;
 
 
-			heal();
-			battle();
-			removeDeadBody();
+			$scope.runClashAnimation();
+
+			$timeout(function(){
+				heal();
+				battle();
+
+
+
+			},900);
+
+
+			$timeout(function(){
+				removeDeadBody();
+			},1500);
+
+
+
 
 			$scope.turn++;
 			$scope.movesLeft = 10;
+
+
 
 			function heal() {
 				var matrix = $scope.matrix;
@@ -323,6 +365,10 @@ angular.module('clashApp')
 							Soldier.x = x;
 							Soldier.y = y;
 							m[x][y] = Soldier;
+							if($scope.highScore < $scope.score ){
+								localStorage['clashHightScore'] = $scope.score;
+								$scope.highScore = $scope.score;
+							}
 						}
 						else{
 							m[x][y] = new Dead();
@@ -332,6 +378,8 @@ angular.module('clashApp')
 							$scope.totalNumSoldiers --;
 							if($scope.totalNumSoldiers<=0){
 								$scope.gameOver = true;
+
+
 							}
 
 						}

@@ -10,7 +10,7 @@
 
 
 	<div class="right-aside score">{{score}}</div>
-	<div class="right-aside clash-btn"  ng-click="clash()"><span class="glyphicon glyphicon-remove"></span></div>
+	<div class="right-aside clash-btn"  ng-click="clash(); $event.stopPropagation();"><span>Clash!</span></div>
 
 	<div class="left-aside moves-left">
 
@@ -19,7 +19,7 @@
 	</div>
 
 
-	<div class="squad">
+	<div class="squad" ng-class="displayClass.clashAnimation('up')">
 		<div class="squad-row" ng-repeat="row in enemyMatrix">
 
 			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(1,soldier)"
@@ -31,10 +31,10 @@
 
 	<hr/>
 
-	<div class="squad" >
+	<div class="squad" ng-class="displayClass.clashAnimation('down')">
 		<div class="squad-row" ng-repeat="row in matrix">
 
-			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)" ng-class="displayClass.selected(soldier);displayClass.highlighted(soldier)" >{{soldier.attack}}/{{soldier.health}}</div>
+			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)" ng-class="[displayClass.selected(soldier),displayClass.highlighted(soldier)]" >{{soldier.attack}}/{{soldier.health}}</div>
 
 
 
@@ -43,15 +43,22 @@
 
 
 	</div>
+
+	<div class="result" ng-show='gameOver'>
+		<div class="score">{{score}}</div>
+		<div class="score-alt">points / {{highScore}}</div>
+
+		<div class="reset-btn" ng-click="resetGame()">retry</div>
+	</div>
+
 </div>
 
-<div class="result">
-	<div>{{score}}</div>
-	<div>{{hightScore}}</div>
-	<button ng-click="resetGame()">restart</button>
+
+<div class="mask" ng-show='gameOver'>
+
 </div>
 
 
 <div class="footer">
-	<p>Made without <span class="glyphicon glyphicon-heart"></span> by Ruocaled</p>
+	<p>by ruocaled</p>
 </div>
