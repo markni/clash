@@ -352,15 +352,16 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+	uglify: {
+	  options: {
+		  compress: {
+			  global_defs: {
+				  "DEBUG": false
+			  },
+			  drop_console: true,
+		  }
+	  }
+	},
     // concat: {
     //   dist: {}
     // },
