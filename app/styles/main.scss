@@ -10,6 +10,20 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+
+$orange: #F25527;
+$blue: #48AFC1;
+$blue-light : #BAD8BC;
+$blue-dark : #4F6088;
+$orange-light: #f2ead5;
+$dark-red: #B64233;
+$green: #B4C63B;
+$pink:#E4837C;
+$gray-light:#F0ECDB;
+$gray : #999;
+
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -21,6 +35,8 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  overflow:hidden;
+  background-color: $gray-light;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -62,9 +78,11 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: transparent;
   width: 700px;
   position: relative;
+  border: 0;
+
 
   .gem {
 	width: 10px;
@@ -76,17 +94,63 @@ body {
 	@include transition(all 500ms);
 	&.gem-full {
 
-	  background-color: #48AFC1;
+	  background-color: $blue;
 	}
 	&.gem-empty {
-	  background-color: #E4837C;
+	  background-color: $pink;
 
 	}
   }
 
+  .clash-btn {
+	@include transition(all 300ms);
+	width:2px;
+	height: 400px;
+
+	position: absolute;
+	right:0;
+
+	top: -100px;
+	background-color: $pink;
+	box-shadow: 1px 0 1px rgba(0,0,0,0.3);
+
+	&:hover{
+	  @include transform-origin(top center);
+	  @include animation(swing 2s ease-in-out forwards);
+	}
+
+
+	div {
+	  position: relative;
+	  height: 100%;
+	  width: 100%;
+	  span{
+		position: absolute;
+		display: block;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: $pink solid 2px;
+		bottom:-30px;
+		left:-13px;
+		background-color: $gray-light;
+		cursor: pointer;
+		box-shadow: 1px 0 1px rgba(0,0,0,0.3);
+	  }
+	}
+
+	&.hideleft{
+	  @include animation(hideleft 2000ms ease-in forwards);
+	  z-index: -10;
+	}
+
+
+
+  }
+
   .right-aside {
 	position: absolute;
-	right: -100px;
+	left: -45px;
 	width: 100px;
 	text-align: left;
 	padding: 5px 10px;
@@ -94,56 +158,54 @@ body {
 	font-size: 20px;
 	text-align: center;
 
+	@include rotate(-90deg);
+
+	@include transition(all 300ms);
+	@include transform-origin(right bottom);
+
+
+
 	&.score {
 	  background-color: #E4837C;
-	  top:100px;
+	  top:165px;
 
 	  padding: 5px;
 
-
-	}
-	&.high-score {
-	  background-color: #E4837C;
-
-	}
-	&.clash-btn {
-	  cursor: pointer;
-
-	  top: 150px;
-	  background-color: #B4C63B;
-
 	  span{
-		@include transition(all 300ms);
-		&:hover {
-		  @include animation(tada 1s infinite);
-
+		display: block;
+		&.score-alt {
+		  font-size: 10px;
+		  text-align: center;
 		}
+
+	  }
+
+	  &.high-score {
+		top:265px;
+		background-color: $blue;
 	  }
 
 
-
-
 	}
+
+
 
   }
   .left-aside {
 	position: absolute;
-	left: -50px;
+	left: 0px;
 	width: 50px;
 	text-align: right;
 	padding: 5px 10px;
 	color: white;
 	font-size: 20px;
-	&.turn {
-	  background-color: #E4837C;
-	  top: 100px;
-	}
+
 	&.moves-left {
 	  width: 20px;
-	  left: -20px;
-	  top: 100px;
+	  left: 60px;
+	  top: 240px;
 	  padding: 0;
-	  background-color: #F0ECDB;
+	  background-color: $gray-light;
 
 
 	}
@@ -190,7 +252,7 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #269abc;
+  background-color: $blue;
   padding: 5px;
   margin: 5px;
   cursor: pointer;
@@ -200,31 +262,36 @@ body {
   font-size: 15px;
 
   &:hover, &.selected, {
-	box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+	box-shadow: 0px 0px 15px 5px rgba($orange-light, .75);
   }
 
   &.highlighted {
-	box-shadow: 0px 0px 15px 5px rgba(38, 154, 188, .35);
+	box-shadow: 0px 0px 15px 5px rgba($blue, .35);
   }
 
   &.tank {
-	background-color: #E4837C;
+	background-color: $pink;
   }
   &.spear {
-	background-color: #48AFC1;
+	background-color: $blue;
 
   }
   &.healer {
-	background-color: #B4C63B;
+	background-color: $green;
 
   }
   &.archer {
-	background-color: #F0ECDB;
+	background-color: $blue-light;
 
   }
 
   &.dead {
-	background-color: #eeeeee;
+	background-color: $gray-light;
+  }
+
+  &.killed {
+
+	box-shadow: 0px 0px 15px 5px rgba($pink, .25);
   }
 
 }
@@ -262,7 +329,7 @@ body {
 	border-radius: 3px;
 	width: 100px;
 	height: 30px;
-	background-color: #B4C63B;
+	background-color: $green;
 	color:white;
 	margin-top: 20px;
 	padding: 5px;

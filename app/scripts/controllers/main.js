@@ -3,14 +3,21 @@
 angular.module('clashApp')
 	.controller('MainCtrl', function ($scope, Squad, Dead, Spear, Healer, Tank, Archer, $timeout) {
 
+
+//		var snd = new Audio("sounds/clash2.wav"); // buffers automatically when created
+		var clickSfx = new Audio("sounds/click.mp3"); // buffers automatically when created
+
+
 		var selected = null;
 		var targeted = null;
 		var inRanges = [];
 
 		var jobs = [Spear, Healer, Tank, Archer];
 
-		var WIDTH = 8;
+		var WIDTH = 7;
 		var HEIGHT = 4;
+
+
 
 		var enemySquad = new Squad(HEIGHT, WIDTH);
 
@@ -23,6 +30,7 @@ angular.module('clashApp')
 		$scope.movesLeft = 10;
 		$scope.MAXMOVESLEFT = $scope.movesLeft;
 		$scope.score = 0;
+		$scope.combo = 0;
 
 		$scope.highScore = parseInt(localStorage['clashHightScore'] || 0);
 
@@ -31,6 +39,7 @@ angular.module('clashApp')
 		$scope.matrix = squad.getMatrix();
 
 		$scope.resetGame = function () {
+			clickSfx.play();
 			selected = null;
 			targeted = null;
 			inRanges = [];
@@ -70,10 +79,16 @@ angular.module('clashApp')
 				if (dir === 'up') {
 					return 'bendup';
 				}
+				else if (dir === 'left'){
+					return 'hideleft';
+				}
 				else {
 					return 'benddown';
 				}
 
+			},
+			deathAnimation:function(soldier){
+					return (soldier.health<0 && soldier instanceof Dead !== true) ? 'killed': '';
 			},
 			getGemClass: function (index) {
 
@@ -94,6 +109,8 @@ angular.module('clashApp')
 
 		$scope.showInRanges = function (isSelfMaxtrix, soldier) {
 			console.log(inRanges);
+
+
 			var matrix;
 			var enemyMatrix;
 			var x = soldier.x;
@@ -127,7 +144,7 @@ angular.module('clashApp')
 
 		$scope.getAbsPos = function (reverse, soldier) {
 			var style = {};
-			var leftMargin = 50;
+			var leftMargin = 100;
 			if (!reverse) {
 
 				style.top = soldier.x * 60 + 'px';
@@ -163,6 +180,8 @@ angular.module('clashApp')
 
 		$scope.clash = function () {
 
+			clickSfx.play();
+
 			selected = null;
 			targeted = null;
 
@@ -172,10 +191,16 @@ angular.module('clashApp')
 				heal();
 				battle();
 
+
+//				snd.play();
+
 			}, 900);
 
 			$timeout(function () {
 				removeDeadBody();
+				removeDeadBody();
+				$scope.score += parseInt(Math.pow(1.7,$scope.combo) -1);
+				$scope.combo = 0;
 			}, 1500);
 
 			$scope.turn++;
@@ -229,6 +254,7 @@ angular.module('clashApp')
 						var mySoldier = matrix[x][y];
 						var enemySoldier = enemyMatrix[x][y];
 						if (mySoldier) {
+
 							if (mySoldier.className === 'dead') continue;
 							if (x === 0) {
 								//first row
@@ -380,6 +406,7 @@ angular.module('clashApp')
 
 						if (t) {
 							$scope.score++;
+							$scope.combo++;
 
 							var Soldier = new jobs[Math.floor(Math.random() * 4)]();  //Pick a random solider
 							Soldier.x = x;
@@ -411,6 +438,7 @@ angular.module('clashApp')
 
 		$scope.reportPos = function (soldier) {
 			console.log(soldier.x, soldier.y);
+			clickSfx.play();
 
 		};
 
@@ -419,6 +447,7 @@ angular.module('clashApp')
 //				console.log('found');
 //
 //			}
+			clickSfx.play();
 			if ($scope.movesLeft > 0) {
 				console.log(soldier);
 				if (selected) {

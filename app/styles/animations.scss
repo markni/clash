@@ -132,20 +132,47 @@
 
 
 @include keyframes(bendup){
+   0%{
+	 bottom:0;
+   }
+   85%{
+	 bottom:50px;
+
+   }
+   90%{
+	 bottom:-50px;
+
+   }
+
+   100%{
+	 bottom:0;
+   }
+
+ }
+
+
+@include keyframes(hideleft ){
   0%{
-	bottom:0;
+	top:-100px;
   }
-  85%{
-	bottom:50px;
+  15%{
+	top:-20px ;
 
   }
-  90%{
-	bottom:-50px;
+ 30%{
+	top:-1000px;
 
   }
-
-  100%{
-	bottom:0;
+  99%{
+	top:-100px;
   }
 
+}
+
+@include keyframes(swing){
+  20% { transform: rotate(2deg); }
+  40% { transform: rotate(-1.5deg); }
+  60% { transform: rotate(1deg); }
+  80% { transform: rotate(-0.5deg); }
+  100% { transform: rotate(0deg); }
 }

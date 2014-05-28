@@ -1,16 +1,17 @@
-<div class="header">
-	<ul class="nav nav-pills pull-right">
-		<li class="active"><a ng-href="#">Home</a></li>
-		<li><a >How to Play</a></li>
-	</ul>
-	<h1 class="text-muted">Clash</h1>
-</div>
+<!--<div class="header">-->
+	<!--<ul class="nav nav-pills pull-right">-->
+		<!--<li class="active"><a ng-href="#">Home</a></li>-->
+		<!--<li><a >How to Play</a></li>-->
+	<!--</ul>-->
+	<!--<h1 class="text-muted">Clash</h1>-->
+<!--</div>-->
 
 <div class="jumbotron">
 
 
-	<div class="right-aside score">{{score}}</div>
-	<div class="right-aside clash-btn"  ng-click="clash(); $event.stopPropagation();"><span>Clash!</span></div>
+	<div class="right-aside score"><span>{{score}}</span><span CLASS="score-alt">SCORE</span></div>
+	<div class="right-aside score high-score"><span>{{highScore}}</span><span CLASS="score-alt">HIGH-SCORE</span></div>
+	<div class="clash-btn"  ng-class="displayClass.clashAnimation('left')" ng-click="clash(); $event.stopPropagation();"><div><span></span></div></div>
 
 	<div class="left-aside moves-left">
 
@@ -23,7 +24,7 @@
 		<div class="squad-row" ng-repeat="row in enemyMatrix">
 
 			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(1,soldier)"
-				ng-class="displayClass.highlighted(soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(0,soldier)" ng-click="reportPos(soldier)">{{soldier.attack}}/{{soldier.health}}</div>
+				ng-class="[displayClass.highlighted(soldier),displayClass.deathAnimation(soldier)]" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(0,soldier)" ng-click="reportPos(soldier)">{{soldier.attack}}/{{soldier.health}}</div>
 
 		</div>
 
@@ -34,7 +35,8 @@
 	<div class="squad" ng-class="displayClass.clashAnimation('down')">
 		<div class="squad-row" ng-repeat="row in matrix">
 
-			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)" ng-class="[displayClass.selected(soldier),displayClass.highlighted(soldier)]" >{{soldier.attack}}/{{soldier.health}}</div>
+			<div class="soldier {{soldier.className}}" ng-repeat="soldier in row track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)"
+				 ng-class="[displayClass.selected(soldier),displayClass.highlighted(soldier),displayClass.deathAnimation(soldier)]" >{{soldier.attack}}/{{soldier.health}}</div>
 
 
 
@@ -59,6 +61,6 @@
 </div>
 
 
-<div class="footer">
-	<p>by ruocaled</p>
-</div>
+<!--<div class="footer">-->
+	<!--<p>by ruocaled</p>-->
+<!--</div>-->
