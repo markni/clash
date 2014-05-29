@@ -5,7 +5,9 @@ angular
 		'ngCookies',
 		'ngResource',
 		'ngSanitize',
-		'ngRoute'
+		'ngRoute',
+		'ngTouch',
+		'ngAnimate'
 	])
 	.config(function ($routeProvider, $locationProvider) {
 		$routeProvider

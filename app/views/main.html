@@ -6,11 +6,11 @@
 	<!--<h1 class="text-muted">Clash</h1>-->
 <!--</div>-->
 
-<div class="jumbotron">
+<div class="jumbotron ng-cloak">
 
 
-	<div class="right-aside score"><span>{{score}}</span><span CLASS="score-alt">SCORE</span></div>
-	<div class="right-aside score high-score"><span>{{highScore}}</span><span CLASS="score-alt">HIGH-SCORE</span></div>
+	<div class="right-aside score"><span>{{getScore()}}</span><span CLASS="score-alt">SCORE</span></div>
+	<div class="right-aside score high-score"><span>{{getKilled()}}</span><span CLASS="score-alt">KILLED</span></div>
 	<div class="clash-btn"  ng-class="displayClass.clashAnimation('left')" ng-click="clash(); $event.stopPropagation();"><div><span></span></div></div>
 
 	<div class="left-aside moves-left">
@@ -47,8 +47,8 @@
 	</div>
 
 	<div class="result" ng-show='gameOver'>
-		<div class="score">{{score}}</div>
-		<div class="score-alt">points / {{highScore}}</div>
+		<div class="score">{{getScore()}}</div>
+		<div class="score-alt">HIGH-SCORE : {{getHighScore()}}</div>
 
 		<div class="reset-btn" ng-click="resetGame()">retry</div>
 	</div>

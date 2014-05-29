@@ -17,11 +17,13 @@ angular.module('clashApp')
 		var WIDTH = 7;
 		var HEIGHT = 4;
 
-
+		var score = 0;
 
 		var enemySquad = new Squad(HEIGHT, WIDTH);
 
 		var squad = new Squad(HEIGHT, WIDTH);
+
+		var localStorageKeyName = 'clashHightScore4';
 
 		$scope.totalNumSoldiers = WIDTH * HEIGHT;
 
@@ -29,14 +31,26 @@ angular.module('clashApp')
 		$scope.turn = 0;
 		$scope.movesLeft = 10;
 		$scope.MAXMOVESLEFT = $scope.movesLeft;
-		$scope.score = 0;
-		$scope.combo = 0;
 
-		$scope.highScore = parseInt(localStorage['clashHightScore'] || 0);
+//		$scope.score = 0;
+		var combo = 0;
 
-		$scope.enemyMatrix = enemySquad.getMatrix();
 
-		$scope.matrix = squad.getMatrix();
+
+		var highScore = parseInt(localStorage[localStorageKeyName] || 0);
+
+		$scope.enemyMatrix = [];
+
+		$scope.matrix = [];
+
+		$timeout(function(){
+			$scope.enemyMatrix = enemySquad.getMatrix();
+
+			$scope.matrix = squad.getMatrix();
+		},500);
+
+		var killed = 0;
+
 
 		$scope.resetGame = function () {
 			clickSfx.play();
@@ -53,13 +67,14 @@ angular.module('clashApp')
 			$scope.turn = 0;
 			$scope.movesLeft = 10;
 			$scope.MAXMOVESLEFT = $scope.movesLeft;
-			$scope.score = 0;
-
+			score = 0;
+			combo = 0;
 			$scope.enemyMatrix = enemySquad.getMatrix();
 
 			$scope.matrix = squad.getMatrix();
+			killed = 0;
 
-		}
+		};
 
 		$scope.range = function (n) {
 			return new Array(n);
@@ -178,6 +193,19 @@ angular.module('clashApp')
 
 		};
 
+		$scope.getScore = function(){
+			return score;
+		};
+		
+		$scope.getKilled = function(){
+			return killed;
+		}
+		
+
+		$scope.getHighScore = function(){
+			return highScore;
+		};
+
 		$scope.clash = function () {
 
 			clickSfx.play();
@@ -199,8 +227,8 @@ angular.module('clashApp')
 			$timeout(function () {
 				removeDeadBody();
 				removeDeadBody();
-				$scope.score += parseInt(Math.pow(1.7,$scope.combo) -1);
-				$scope.combo = 0;
+				score += parseInt(Math.pow(3.3,combo) -1);
+				combo = 0;
 			}, 1500);
 
 			$scope.turn++;
@@ -249,111 +277,39 @@ angular.module('clashApp')
 			function battle() {
 				var matrix = $scope.matrix;
 				var enemyMatrix = $scope.enemyMatrix;
+
+				function attack(soldier, isSelf){
+				 	if(!soldier || soldier instanceof Dead){
+						return;
+					}
+
+					var em;
+					if (isSelf){
+
+						em = enemyMatrix;
+					}
+					else{
+						em = matrix;
+					}
+
+					var enemyXPos = soldier.attackRange - 1 - soldier.x;
+
+					if (em[enemyXPos]) {
+
+						var targetSoldier = em[enemyXPos][soldier.y];
+						if (targetSoldier && targetSoldier instanceof Dead !== true) {
+
+							targetSoldier.health -= soldier.attack;
+						}
+					}
+				}
+
 				for (var x = 0; x < 2; x++) {
 					for (var y = 0; y < WIDTH; y++) {
 						var mySoldier = matrix[x][y];
 						var enemySoldier = enemyMatrix[x][y];
-						if (mySoldier) {
-
-							if (mySoldier.className === 'dead') continue;
-							if (x === 0) {
-								//first row
-
-								if (mySoldier.attackRange === 1) {
-									if (mySoldier && enemySoldier) {
-										//melee soldier
-										if (enemySoldier.attackRange === 1) {
-											mySoldier.health -= enemySoldier.attack;
-										}
-										if (enemySoldier instanceof Dead !== true) {
-											enemySoldier.health -= mySoldier.attack;
-										}
-									}
-								}
-
-								else {
-									//range soldier
-									if (mySoldier && enemySoldier) {
-										console.log('range soldier get attacked!');
-										mySoldier.health -= enemySoldier.attack;
-									}
-
-									if (mySoldier) {
-
-										var enemyXPos = mySoldier.attackRange - 1 - mySoldier.x;
-
-										if (enemyMatrix[enemyXPos]) {
-
-											var targetSoldier = enemyMatrix[enemyXPos][mySoldier.y];
-											if (targetSoldier && targetSoldier instanceof Dead !== true) {
-
-												targetSoldier.health -= mySoldier.attack;
-											}
-										}
-
-									}
-
-									//fix for enemy archer
-
-									if (enemySoldier) {
-
-										var enemyXPos = enemySoldier.attackRange - 1 - enemySoldier.x;
-
-										if (matrix[enemyXPos]) {
-
-											var targetSoldier = matrix[enemyXPos][enemySoldier.y];
-											if (targetSoldier && targetSoldier instanceof Dead !== true) {
-
-												targetSoldier.health -= enemySoldier.attack;
-											}
-										}
-
-									}
-								}
-							}
-							else {
-								if (mySoldier.attackRange > mySoldier.x) {
-									//range soldier  in back rows that able to attack;
-
-									//since it's in back row, won't be attacked;
-									//mySoldier.health -= enemySoldier.attack;
-
-									var enemyXPos = mySoldier.attackRange - 1 - mySoldier.x;
-//								console.log(enemyXPos);
-									if (enemyMatrix[enemyXPos]) {
-//									console.log('fire arrow');
-										var targetSoldier = enemyMatrix[enemyXPos][mySoldier.y];
-										if (targetSoldier && targetSoldier instanceof Dead !== true) {
-//										console.log('fire arrow!!!');
-											//fire arrow
-											targetSoldier.health -= mySoldier.attack;
-										}
-									}
-
-								}
-
-								if (enemySoldier.attackRange > enemySoldier.x) {
-									//range soldier  in back rows that able to attack;
-
-									//since it's in back row, won't be attacked;
-									//mySoldier.health -= enemySoldier.attack;
-
-									var enemyXPos = enemySoldier.attackRange - 1 - enemySoldier.x;
-//								console.log(enemyXPos);
-									if (matrix[enemyXPos]) {
-//									console.log('fire arrow');
-										var targetSoldier = matrix[enemyXPos][enemySoldier.y];
-										if (targetSoldier && targetSoldier instanceof Dead !== true) {
-//										console.log('fire arrow!!!');
-											//fire arrow
-											targetSoldier.health -= enemySoldier.attack;
-										}
-									}
-
-								}
-
-							}
-						}
+						attack(mySoldier,1);
+						attack(enemySoldier,0);
 					}
 				}
 			}
@@ -376,6 +332,8 @@ angular.module('clashApp')
 
 					}
 				}
+
+
 
 				function check(m, x, y, s) {
 					var soldier = m[x][y];
@@ -405,17 +363,27 @@ angular.module('clashApp')
 						}
 
 						if (t) {
-							$scope.score++;
-							$scope.combo++;
 
-							var Soldier = new jobs[Math.floor(Math.random() * 4)]();  //Pick a random solider
+
+
+							score++;
+
+							combo++;
+							killed++;
+
+							var Soldier = enemySquad.getANewSoldier();  //Pick a random solider
 							Soldier.x = x;
 							Soldier.y = y;
 							m[x][y] = Soldier;
-							if ($scope.highScore < $scope.score) {
-								localStorage['clashHightScore'] = $scope.score;
-								$scope.highScore = $scope.score;
-							}
+							$timeout(function(){
+								if (highScore <score ) {
+									highScore = score ;
+									localStorage[localStorageKeyName] = score ;
+
+
+								}
+							})
+
 						}
 						else {
 							m[x][y] = new Dead();
@@ -423,6 +391,7 @@ angular.module('clashApp')
 							m[x][y].y = y;
 
 							$scope.totalNumSoldiers--;
+
 							if ($scope.totalNumSoldiers <= 0) {
 								$scope.gameOver = true;
 

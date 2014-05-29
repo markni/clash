@@ -11,18 +11,9 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 // endbower
 
 
-$orange: #F25527;
-$blue: #48AFC1;
-$blue-light : #BAD8BC;
-$blue-dark : #4F6088;
-$orange-light: #f2ead5;
-$dark-red: #B64233;
-$green: #B4C63B;
-$pink:#E4837C;
-$gray-light:#F0ECDB;
-$gray : #999;
-
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 
 .browsehappy {
   margin: 0.2em 0;
@@ -113,7 +104,8 @@ body {
 	top: -100px;
 	background-color: $pink;
 	box-shadow: 1px 0 1px rgba(0,0,0,0.3);
-
+	@include transform-origin(top center);
+	@include animation(swing 2s ease-in-out forwards);
 	&:hover{
 	  @include transform-origin(top center);
 	  @include animation(swing 2s ease-in-out forwards);
@@ -121,6 +113,7 @@ body {
 
 
 	div {
+
 	  position: relative;
 	  height: 100%;
 	  width: 100%;
@@ -166,9 +159,9 @@ body {
 
 
 	&.score {
-	  background-color: #E4837C;
-	  top:165px;
+	  background-color: $blue;
 
+	  top:265px;
 	  padding: 5px;
 
 	  span{
@@ -181,8 +174,8 @@ body {
 	  }
 
 	  &.high-score {
-		top:265px;
-		background-color: $blue;
+		top:165px;
+		background-color: #E4837C;
 	  }
 
 
@@ -262,7 +255,8 @@ body {
   font-size: 15px;
 
   &:hover, &.selected, {
-	box-shadow: 0px 0px 15px 5px rgba($orange-light, .75);
+	box-shadow: 0px 0px 15px 5px rgba($green, .35);
+
   }
 
   &.highlighted {
@@ -292,6 +286,68 @@ body {
   &.killed {
 
 	box-shadow: 0px 0px 15px 5px rgba($pink, .25);
+  }
+
+  ////ng-animte parts
+  //
+  //&.ng-enter-stagger{
+	//@include  transition-delay(3s);
+	//@include transition-duration(0s);
+  //}
+  //
+  //&.ng-enter{
+	//@include transition(5s linear all);
+	//opacity: 0;
+  //
+  //
+  //
+  //}
+  //
+  //&.ng-enter-active{
+	//opacity: 1;
+  //}
+  //&.ng-leave{
+  //
+	//opacity: 1;
+  //
+  //
+  //
+  //}
+  //
+  //&.ng-leave-active{
+  //
+	//opacity: 0;
+  //}
+
+}
+.squad-row{
+
+  &.ng-enter-stagger{
+	@include  transition-delay(100ms);
+	@include transition-duration(0s);
+  }
+
+  &.ng-enter{
+	@include transition(300ms ease-in all);
+
+	opacity: 0;
+
+  }
+
+  &.ng-enter-active{
+	opacity: 1;
+  }
+  &.ng-leave{
+
+
+
+
+
+  }
+
+  &.ng-leave-active{
+
+
   }
 
 }
