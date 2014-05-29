@@ -25,7 +25,7 @@ angular.module('clashApp')
 
 		var localStorageKeyName = 'clashHightScore4';
 
-		$scope.totalNumSoldiers = WIDTH * HEIGHT;
+		var totalNumSoldiers = WIDTH * HEIGHT;
 
 		$scope.gameOver = false;
 		$scope.turn = 0;
@@ -61,7 +61,7 @@ angular.module('clashApp')
 
 			squad = new Squad(HEIGHT, WIDTH);
 
-			$scope.totalNumSoldiers = WIDTH * HEIGHT;
+			totalNumSoldiers = WIDTH * HEIGHT;
 
 			$scope.gameOver = false;
 			$scope.turn = 0;
@@ -390,9 +390,9 @@ angular.module('clashApp')
 							m[x][y].x = x;
 							m[x][y].y = y;
 
-							$scope.totalNumSoldiers--;
+							totalNumSoldiers--;
 
-							if ($scope.totalNumSoldiers <= 0) {
+							if (totalNumSoldiers <= 0) {
 								$scope.gameOver = true;
 
 							}
