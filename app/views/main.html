@@ -48,7 +48,13 @@
 
 	<div class="result" ng-show='gameOver'>
 		<div class="score">{{getScore()}}</div>
-		<div class="score-alt">HIGH-SCORE : {{getHighScore()}}</div>
+		<div class="score-alt">HIGH-SCORE: {{getHighScore()}}</div>
+		<hr />
+		<div>
+			<span class="tag" ng-repeat="combo in getCombos() track by $index" ng-show="combo">
+				{{$index}}k x {{combo}}
+			</span>
+		</div>
 
 		<div class="reset-btn" ng-click="resetGame()">retry</div>
 	</div>

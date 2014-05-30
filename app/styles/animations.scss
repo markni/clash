@@ -178,6 +178,33 @@
 }
 
 
+
+@include keyframes(bounceIn) {
+  0% {
+	opacity: 0;
+	-webkit-transform: scale(.3);
+	transform: scale(.3);
+  }
+
+  50% {
+	opacity: 1;
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+  }
+
+  70% {
+	-webkit-transform: scale(.9);
+	transform: scale(.9);
+  }
+
+  100% {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+  }
+}
+
+
 @include keyframes(glow){
   0% { box-shadow: 0px 0px 25px 5px rgba($green, .25); }
 

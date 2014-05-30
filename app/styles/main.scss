@@ -284,7 +284,8 @@ body {
   }
 
   &.killed {
-
+	-webkit-transform: rotateX(1800deg); /* Chrome, Safari, Opera */
+	transform: rotateX(1800deg);
 	box-shadow: 0px 0px 15px 5px rgba($pink, .25);
   }
 
@@ -366,7 +367,7 @@ body {
 .result {
   z-index:15;
   width:300px;
-  height:200px;
+  height:280px;
   position: absolute;
   top:50%;
   left:50%;
@@ -376,6 +377,38 @@ body {
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
   padding: 30px;
+  &.ng-hide-remove{
+
+	@include  animation(bounceIn 0.5s ease-in-out forwards);
+  }
+
+
+
+  .tag{
+	font-size: 10px;
+	display: inline-block;
+	margin: 3px;
+	border-radius: 3px;
+	padding: 3px;
+	background-color: $gray-light;
+	color:#666;
+
+	//&.ng-enter-stagger{
+	//  @include  transition-delay(10000ms);
+	//  @include transition-duration(0s);
+	//}
+	//
+	//&.ng-enter{
+	//  @include transition(300ms ease-in all);
+	//
+	//  opacity: 0;
+	//
+	//}
+	//
+	//&.ng-enter-active{
+	//  opacity: 1;
+	//}
+  }
   .score{
 	font-size:40px;
 	font-weight: 600;

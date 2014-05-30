@@ -4,7 +4,11 @@ angular.module('clashApp')
 	.controller('MainCtrl', function ($scope, Squad, Dead, Spear, Healer, Tank, Archer, $timeout) {
 
 
-//		var snd = new Audio("sounds/clash2.wav"); // buffers automatically when created
+		var snd = new Audio("sounds/clash.mp3"); // buffers automatically when created
+		var snd2 = new Audio("sounds/clash2.mp3");
+		var snd3 = new Audio("sounds/clash3.mp3");
+		var snd4 = new Audio("sounds/clash4.mp3");
+		var sfx = [snd,snd2,snd3,snd4];
 		var clickSfx = new Audio("sounds/click.mp3"); // buffers automatically when created
 
 
@@ -34,6 +38,7 @@ angular.module('clashApp')
 
 //		$scope.score = 0;
 		var combo = 0;
+		var combos = [];
 
 
 
@@ -69,6 +74,7 @@ angular.module('clashApp')
 			$scope.MAXMOVESLEFT = $scope.movesLeft;
 			score = 0;
 			combo = 0;
+			combos = [];
 			$scope.enemyMatrix = enemySquad.getMatrix();
 
 			$scope.matrix = squad.getMatrix();
@@ -103,7 +109,7 @@ angular.module('clashApp')
 
 			},
 			deathAnimation:function(soldier){
-					return (soldier.health<0 && soldier instanceof Dead !== true) ? 'killed': '';
+					return (soldier.health<=0 && soldier instanceof Dead !== true) ? 'killed': '';
 			},
 			getGemClass: function (index) {
 
@@ -199,12 +205,33 @@ angular.module('clashApp')
 		
 		$scope.getKilled = function(){
 			return killed;
-		}
+
+
+		};
+
+		$scope.getCombos = function(){
+			if($scope.gameOver){
+				return combos;
+			}
+			else{
+				return [];
+			}
+		};
 		
 
 		$scope.getHighScore = function(){
 			return highScore;
 		};
+
+		$scope.playSound = function(){
+			if(sfx.length===0){
+				sfx =[snd,snd2,snd3,snd4];
+			}
+
+			var s = sfx.splice(Math.floor(Math.random()*sfx.length),1)[0];
+			s.play();
+
+		} ;
 
 		$scope.clash = function () {
 
@@ -219,14 +246,16 @@ angular.module('clashApp')
 				heal();
 				battle();
 
-
-//				snd.play();
+				$scope.playSound();
 
 			}, 900);
 
 			$timeout(function () {
 				removeDeadBody();
 				removeDeadBody();
+				if(combo){
+					combos[combo] === undefined ? combos[combo] = 1 : combos[combo] ++;
+				}
 				score += parseInt(Math.pow(3.3,combo) -1);
 				combo = 0;
 			}, 1500);
