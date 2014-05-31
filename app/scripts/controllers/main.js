@@ -129,7 +129,6 @@ angular.module('clashApp')
 		};
 
 		$scope.showInRanges = function (isSelfMaxtrix, soldier) {
-			console.log(inRanges);
 
 
 			var matrix;

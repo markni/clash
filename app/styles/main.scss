@@ -289,6 +289,16 @@ body {
 	box-shadow: 0px 0px 15px 5px rgba($pink, .25);
   }
 
+  //&.ng-move {
+	//@include transition(5s linear all);
+	//opacity: 0;
+  //
+  //}
+  //
+  // &.ng-move-active{
+	// opacity: 1;
+  //}
+
   ////ng-animte parts
   //
   //&.ng-enter-stagger{
