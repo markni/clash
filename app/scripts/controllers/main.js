@@ -59,6 +59,8 @@ angular.module('clashApp')
 		var killed = 0;
 
 
+
+
 		$scope.resetGame = function () {
 			clickSfx.play();
 			selected = null;
@@ -85,9 +87,7 @@ angular.module('clashApp')
 
 		};
 
-		$scope.range = function (n) {
-			return new Array(n);
-		};
+
 
 		$scope.displayClass = {
 			selected: function (soldier) {
