@@ -270,6 +270,7 @@ body {
   line-height: 35px;
   font-size: 15px;
 
+
   &:hover, &.selected, {
 	box-shadow: 0px 0px 15px 5px rgba($green, .35);
 
@@ -303,8 +304,35 @@ body {
   &.killed {
 	-webkit-transform: rotateX(1800deg); /* Chrome, Safari, Opera */
 	transform: rotateX(1800deg);
-	box-shadow: 0px 0px 15px 5px rgba($pink, .25);
+	box-shadow: 0px 0px 15px 5px rgba($pink, .35);
   }
+
+  &.ng-enter-stagger{
+	@include  transition-delay(100ms);
+	@include transition-duration(0s);
+  }
+
+
+  &.ng-enter{
+	@include transition(300ms ease-in all);
+	//-webkit-transform: translateY(-2000px);
+	//-ms-transform: translateY(-2000px);
+	//transform: translateY(-2000px);
+	opacity: 0;
+
+  }
+
+
+  &.ng-enter-active{
+	//-webkit-transform: translateY(0px);
+	//-ms-transform: translateY(0px);
+	//transform: translateY(0px);
+	opacity: 1;
+  }
+
+
+
+
 
   //&.ng-move {
 	//@include transition(5s linear all);
@@ -384,34 +412,6 @@ body {
 }
 .squad-row{
 
-  &.ng-enter-stagger{
-	@include  transition-delay(100ms);
-	@include transition-duration(0s);
-  }
-
-  &.ng-enter{
-	@include transition(300ms ease-in all);
-
-	opacity: 0;
-
-  }
-
-  &.ng-enter-active{
-	opacity: 1;
-  }
-  &.ng-leave{
-
-	  background-color: red;
-
-
-
-  }
-
-  &.ng-leave-active{
-
-	background-color: red;
-
-  }
 
 }
 

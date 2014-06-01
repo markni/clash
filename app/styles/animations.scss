@@ -158,6 +158,36 @@
   50% { box-shadow: 0px 0px 15px 5px rgba($green, .35); }
 }
 
+
+@include keyframes (bounceInDown) {
+  0% {
+	opacity: 0;
+	-webkit-transform: translateY(-2000px);
+	-ms-transform: translateY(-2000px);
+	transform: translateY(-2000px);
+  }
+
+  60% {
+	opacity: 1;
+	-webkit-transform: translateY(40px);
+	-ms-transform: translateY(40px);
+	transform: translateY(40px);
+  }
+
+  80% {
+	-webkit-transform: translateY(-10px);
+	-ms-transform: translateY(-10px);
+	transform: translateY(-10px);
+  }
+
+  100% {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+  }
+}
+
+
 @include keyframes(bounceOutDown) {
   0% {
 	-webkit-transform: translateY(0);
