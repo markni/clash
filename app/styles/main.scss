@@ -177,7 +177,7 @@ body {
 	&.score {
 	  background-color: $blue;
 
-	  top:265px;
+	  top:276px;
 	  padding: 5px;
 
 	  span{
@@ -190,7 +190,7 @@ body {
 	  }
 
 	  &.high-score {
-		top:165px;
+		top:176px;
 		background-color: #E4837C;
 	  }
 
@@ -212,7 +212,7 @@ body {
 	&.moves-left {
 	  width: 20px;
 	  left: 60px;
-	  top: 240px;
+	  top: 250px;
 	  padding: 0;
 	  background-color: $gray-light;
 
@@ -461,6 +461,16 @@ body {
 	  @include animation(tada 1s forwards);
 	}
   }
+}
+
+.hr{
+  height: 2px;
+  width: 80%;
+  background: white;
+  margin: 30px auto;
+  border-top: 1px solid #999;
+  opacity: 0.5;
+  margin-left: 80px;
 }
 
 /* Responsive: Portrait tablets and up */
