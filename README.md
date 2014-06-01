@@ -1,7 +1,7 @@
 Clash
 =====
 
-*Clash* is a original html5 strategy game. Given limited amount of soldiers with different types, the goal of the game is to eliminate as many  enemies as possible.
+*Clash* is an original html5 strategy game. Given limited amount of soldiers with different abilities, the goal of the game is to eliminate as many enemies as possible using strategical thinking.
 
 This game is written in *AngularJS*.
 
