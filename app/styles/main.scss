@@ -82,6 +82,7 @@ body {
 	padding: 0;
 	margin: 5px 5px;
 	border-radius: 25%;
+	background-color: $pink;
 	@include transition(all 500ms);
 	&.gem-full {
 
@@ -91,6 +92,21 @@ body {
 	  background-color: $pink;
 
 	}
+	&.ng-enter-stagger{
+	  @include  transition-delay(100ms);
+	  @include transition-duration(0s);
+	}
+
+	&.ng-enter{
+	  @include transition(500ms ease-in all);
+	  background-color: $pink;
+
+
+	}
+
+	&.ng-enter-active{
+	  background-color: $blue;
+	}
   }
 
   .clash-btn {
@@ -99,7 +115,7 @@ body {
 	height: 400px;
 
 	position: absolute;
-	right:0;
+	right:20px;
 
 	top: -100px;
 	background-color: $pink;
@@ -133,7 +149,7 @@ body {
 	}
 
 	&.hideleft{
-	  @include animation(hideleft 2000ms ease-in forwards);
+	  @include animation(bounceOutUp 1000ms ease-in forwards);
 	  z-index: -10;
 	}
 
@@ -350,7 +366,7 @@ body {
   }
   &.ng-leave{
 
-
+	  background-color: red;
 
 
 
@@ -358,6 +374,7 @@ body {
 
   &.ng-leave-active{
 
+	background-color: red;
 
   }
 
@@ -390,6 +407,10 @@ body {
   &.ng-hide-remove{
 
 	@include  animation(bounceIn 0.5s ease-in-out forwards);
+  }
+  &.ng-hide-add{
+	display:block!important;
+	@include  animation(bounceOutDown 0.5s ease-in-out forwards);
   }
 
 

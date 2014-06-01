@@ -1,112 +1,35 @@
 @import "compass";
 @import "mixins";
+
 /* css3 animations */
 /*tada effect*/
-@-webkit-keyframes tada {
-/* line 23, style.scss */
-  0% {
-	-webkit-transform: scale(1);
-  }
 
-/* line 26, style.scss */
+
+@include keyframes (tada) {
+
+  0% {
+
+	-webkit-transform: scale(1);
+	transform: scale(1);
+  }
   10%, 20% {
 	-webkit-transform: scale(0.9) rotate(-3deg);
+	transform: scale(0.9) rotate(-3deg);
   }
 
-/* line 29, style.scss */
   30%, 50%, 70%, 90% {
 	-webkit-transform: scale(1.1) rotate(3deg);
+	transform: scale(1.1) rotate(3deg);
   }
 
-/* line 32, style.scss */
   40%, 60%, 80% {
 	-webkit-transform: scale(1.1) rotate(-3deg);
+	transform: scale(1.1) rotate(-3deg);
   }
 
-/* line 35, style.scss */
   100% {
 	-webkit-transform: scale(1) rotate(0);
-  }
-}
-
-@-moz-keyframes tada {
-/* line 23, style.scss */
-  0% {
-	-webkit-transform: scale(1);
-  }
-
-/* line 26, style.scss */
-  10%, 20% {
-	-webkit-transform: scale(0.9) rotate(-3deg);
-  }
-
-/* line 29, style.scss */
-  30%, 50%, 70%, 90% {
-	-webkit-transform: scale(1.1) rotate(3deg);
-  }
-
-/* line 32, style.scss */
-  40%, 60%, 80% {
-	-webkit-transform: scale(1.1) rotate(-3deg);
-  }
-
-/* line 35, style.scss */
-  100% {
-	-webkit-transform: scale(1) rotate(0);
-  }
-}
-
-@-o-keyframes tada {
-/* line 23, style.scss */
-  0% {
-	-webkit-transform: scale(1);
-  }
-
-/* line 26, style.scss */
-  10%, 20% {
-	-webkit-transform: scale(0.9) rotate(-3deg);
-  }
-
-/* line 29, style.scss */
-  30%, 50%, 70%, 90% {
-	-webkit-transform: scale(1.1) rotate(3deg);
-  }
-
-/* line 32, style.scss */
-  40%, 60%, 80% {
-	-webkit-transform: scale(1.1) rotate(-3deg);
-  }
-
-/* line 35, style.scss */
-  100% {
-	-webkit-transform: scale(1) rotate(0);
-  }
-}
-
-@keyframes tada {
-/* line 23, style.scss */
-  0% {
-	-webkit-transform: scale(1);
-  }
-
-/* line 26, style.scss */
-  10%, 20% {
-	-webkit-transform: scale(0.9) rotate(-3deg);
-  }
-
-/* line 29, style.scss */
-  30%, 50%, 70%, 90% {
-	-webkit-transform: scale(1.1) rotate(3deg);
-  }
-
-/* line 32, style.scss */
-  40%, 60%, 80% {
-	-webkit-transform: scale(1.1) rotate(-3deg);
-  }
-
-/* line 35, style.scss */
-  100% {
-	-webkit-transform: scale(1) rotate(0);
+	transform: scale(1) rotate(0);
   }
 }
 
@@ -209,4 +132,54 @@
   0% { box-shadow: 0px 0px 25px 5px rgba($green, .25); }
 
   50% { box-shadow: 0px 0px 15px 5px rgba($green, .35); }
+}
+
+@include keyframes(bounceOutDown) {
+  0% {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+  }
+
+  20% {
+	opacity: 1;
+	-webkit-transform: translateY(-20px);
+	-ms-transform: translateY(-20px);
+	transform: translateY(-20px);
+  }
+
+  100% {
+	opacity: 0;
+	-webkit-transform: translateY(2000px);
+	-ms-transform: translateY(2000px);
+	transform: translateY(2000px);
+  }
+}
+
+@include keyframes(bounceOutUp) {
+  0% {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+  }
+
+  20% {
+	opacity: 1;
+	-webkit-transform: translateY(40px);
+	-ms-transform: translateY(40px);
+	transform: translateY(40px);
+  }
+
+  70% {
+	opacity: 0;
+	-webkit-transform: translateY(-2000px);
+	-ms-transform: translateY(-2000px);
+	transform: translateY(-2000px);
+  }
+
+  100% {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+  }
 }

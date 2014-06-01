@@ -10,6 +10,7 @@ angular.module('clashApp')
 		var snd4 = new Audio("sounds/clash4.mp3");
 		var sfx = [snd,snd2,snd3,snd4];
 		var clickSfx = new Audio("sounds/click.mp3"); // buffers automatically when created
+		var gems = [];
 
 
 		var selected = null;
@@ -49,6 +50,7 @@ angular.module('clashApp')
 		$scope.matrix = [];
 
 		$timeout(function(){
+			gems = new Array($scope.MAXMOVESLEFT);
 			$scope.enemyMatrix = enemySquad.getMatrix();
 
 			$scope.matrix = squad.getMatrix();
@@ -75,6 +77,7 @@ angular.module('clashApp')
 			score = 0;
 			combo = 0;
 			combos = [];
+			gems = new Array($scope.MAXMOVESLEFT);
 			$scope.enemyMatrix = enemySquad.getMatrix();
 
 			$scope.matrix = squad.getMatrix();
@@ -207,6 +210,10 @@ angular.module('clashApp')
 
 
 		};
+
+		$scope.getGems = function(){
+			return gems;
+		}
 
 		$scope.getCombos = function(){
 			if($scope.gameOver){

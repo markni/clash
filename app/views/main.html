@@ -15,7 +15,7 @@
 
 	<div class="left-aside moves-left">
 
-		<div class="gem"  ng-repeat="a in range(MAXMOVESLEFT) track by $index" ng-class="displayClass.getGemClass($index)"></div>
+		<div class="gem"  ng-repeat="a in getGems() track by $index" ng-class="displayClass.getGemClass($index)"></div>
 
 	</div>
 
