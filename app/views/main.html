@@ -21,7 +21,7 @@
 
 
 	<div class="squad" ng-class="displayClass.clashAnimation('up')">
-		<div class="soldier enemy {{soldier.className}}" ng-repeat="soldier in enemyMatrix track by $index" ng-style="getAbsPos(1,soldier)"
+		<div class="soldier enemy {{soldier.className}}" ng-repeat="soldier in enemyMatrix track by soldier.id" ng-style="getAbsPos(1,soldier)"
 			 ng-class="[displayClass.highlighted(soldier),displayClass.deathAnimation(soldier)]" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(0,soldier)" ng-click="reportPos(soldier)">{{soldier.attack}}/{{soldier.health}}</div>
 
 	</div>
@@ -30,7 +30,7 @@
 
 
 	<div class="squad" ng-class="displayClass.clashAnimation('down')">
-		<div class="soldier {{soldier.className}}" ng-repeat="soldier in matrix track by $index" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)"
+		<div class="soldier {{soldier.className}}" ng-repeat="soldier in matrix track by soldier.id" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)"
 			 ng-class="[displayClass.selected(soldier),displayClass.highlighted(soldier),displayClass.deathAnimation(soldier)]" >{{soldier.attack}}/{{soldier.health}}</div>
 
 

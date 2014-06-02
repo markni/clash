@@ -265,7 +265,7 @@ body {
   padding: 5px;
   margin: 5px;
   cursor: pointer;
-  border: 4px white solid;
+  border: 3px white solid;
   color: white;
   line-height: 35px;
   font-size: 15px;
@@ -332,16 +332,18 @@ body {
 
 
 
+  &.ng-leave{
+	opacity: 0;
+  }
 
-
-  //&.ng-move {
-	//@include transition(5s linear all);
-	//opacity: 0;
-  //
+  //&.ng-move{
+	//-webkit-transform:scaleX(8);
+	//background-color: red;
   //}
   //
-  // &.ng-move-active{
-	// opacity: 1;
+  //&.ng-move-active{
+	//background-color: yellow;
+  //
   //}
 
   ////ng-animte parts

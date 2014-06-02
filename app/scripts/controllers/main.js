@@ -543,7 +543,7 @@ angular.module('clashApp')
 				}
 				if (targeted) {
 					console.log('swap');
-					if (squad.swap(selected, targeted)) {
+					if (squad.swap(selected, targeted,1)) {
 						//swapped
 						selected = null;
 						targeted = null;
