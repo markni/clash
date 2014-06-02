@@ -6,6 +6,8 @@ Clash
 This game is written in *AngularJS*.
 
 
+Play the game : http//clashgame.github.io
+
 ##Running locally 
 
 Preinstall *nodejs*, *npm*, *bower* and *grunt*
