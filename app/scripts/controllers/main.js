@@ -27,6 +27,9 @@ angular.module('clashApp')
 		var squad = new Squad(HEIGHT, WIDTH);
 
 		var localStorageKeyName = 'clashHightScore4';
+		var localStorageKeyNameForGuide = 'clashGuideViewed';
+
+		var guideViewed = parseInt(localStorage[localStorageKeyNameForGuide] || 0);
 
 		var totalNumSoldiers = WIDTH * HEIGHT;
 
@@ -45,14 +48,36 @@ angular.module('clashApp')
 
 		$scope.matrix = [];
 
+		$scope.demoMatrix = [];
+
+		$timeout(function(){
+			var s = new Squad(2, 6);
+			$scope.demoMatrix = s.getMatrix();
+
+		},500);
+
 		$timeout(function () {
 			gems = new Array($scope.MAXMOVESLEFT);
 			$scope.enemyMatrix = enemySquad.getMatrix();
 
 			$scope.matrix = squad.getMatrix();
+
+
 		}, 500);
 
 		var killed = 0;
+
+
+
+		if(guideViewed){
+			$scope.currentGuide = -1;
+		}
+		else{
+			$scope.currentGuide = 0;
+		}
+
+		$scope.MAXGUIDES = 4;
+		$scope.guideFlags = new Array($scope.MAXGUIDES);
 
 		$scope.resetGame = function () {
 			clickSfx.play();
@@ -81,6 +106,12 @@ angular.module('clashApp')
 		};
 
 		$scope.displayClass = {
+			guideAnimation:function(whichGuide){
+				if(whichGuide===0){
+					return $scope.guideFlags[0] ? 'hideleft' : '';
+				}
+
+			},
 			selected: function (soldier) {
 				return soldier === selected ? 'selected' : '';
 			},
@@ -114,6 +145,30 @@ angular.module('clashApp')
 					return 'gem-full';
 				}
 
+			}
+
+		};
+
+
+		$scope.moveNext = function(from){
+			console.log('move next',from);
+			if(typeof from == 'undefined'){
+				$scope.currentGuide ++ ;
+			}
+			else if(from === 0){
+				console.log('workds');
+				$scope.guideFlags[0] = 1;
+				$timeout(function(){
+					$scope.currentGuide ++ ;
+
+				},1000);
+
+			}
+
+			if($scope.currentGuide>=$scope.MAXGUIDES){
+				$scope.currentGuide = -1;
+				localStorage[localStorageKeyNameForGuide] =1;
+				$scope.resetGame();
 			}
 
 		};
@@ -426,92 +481,6 @@ angular.module('clashApp')
 
 			}
 
-//			function removeDeadBody(_squad) {
-//
-//				for (var x = 0; x < 2; x++) {
-//					for (var y = 0; y < _squad.w; y++) {
-//						check(x, y, _squad);
-//					}
-//				}
-//
-//				for (var x = 0; x < 2; x++) {
-//					for (var y = 0; y < _squad.w; y++) {
-//						shift(x, y, _squad, false);
-//					}
-//				}
-//
-//				function check(x, y, s) {
-//					var soldier = s.getSoldierByPos(x,y);
-//					var soldierBellow = s.getSoldierByPos(x+1,y);
-//					if (soldier && soldier.health < 1 && soldier instanceof Dead !== true) {
-//						s.setSoldierByPos(x,y,undefined);
-//
-//					}
-//
-//					//todo:what is this???
-//					if (soldier instanceof Dead === true && soldierBellow && soldierBellow instanceof Dead !== true) {
-//						console.log('force to move forward');
-//						s.setSoldierByPos(x,y,undefined);
-//
-//					}
-//
-//				}
-//
-//				//move up to fill this space
-//
-//				function shift(x, y, s, t) {
-//					var soldier = s.getSoldierByPos(x,y);
-//					if (!soldier) {
-//						console.log('find dead body');
-//						//find dead body
-//						var soldierBellow = s.getSoldierByPos(x+1,y);
-//
-//						while (soldierBellow && soldierBellow instanceof Dead !== true) {
-//							m[x][y] = m[x + 1][y];
-//							m[x][y].x = x;
-//							m[x][y].y = y;
-//							x = x + 1;
-//							soldierBellow = s.getSoldierByPos(x+1,y);
-//						}
-//
-//						if (t) {
-//
-//							score++;
-//
-//							combo++;
-//							killed++;
-//
-//							var Soldier = enemySquad.getANewSoldier();  //Pick a random solider
-//							Soldier.x = x;
-//							Soldier.y = y;
-//							m[x][y] = Soldier;
-//							$timeout(function () {
-//								if (highScore < score) {
-//									highScore = score;
-//									localStorage[localStorageKeyName] = score;
-//
-//								}
-//							})
-//
-//						}
-//						else {
-//							m[x][y] = new Dead();
-//							m[x][y].x = x;
-//							m[x][y].y = y;
-//
-//							totalNumSoldiers--;
-//
-//							if (totalNumSoldiers <= 0) {
-//								$scope.gameOver = true;
-//
-//							}
-//
-//						}
-//
-//					}
-//				}
-//			}
-
 		};
 
 		$scope.reportPos = function (soldier) {
@@ -521,10 +490,7 @@ angular.module('clashApp')
 		};
 
 		$scope.go = function (soldier) {
-//			if (evt.target.classList && evt.target.classList.contains('soldier')){
-//				console.log('found');
-//
-//			}
+
 			clickSfx.play();
 			if ($scope.movesLeft > 0) {
 				console.log(soldier);
@@ -543,11 +509,23 @@ angular.module('clashApp')
 				}
 				if (targeted) {
 					console.log('swap');
+
 					if (squad.swap(selected, targeted,1)) {
 						//swapped
 						selected = null;
 						targeted = null;
-						$scope.movesLeft--;
+
+						if($scope.currentGuide === 1){
+
+							$timeout(function(){
+								$scope.moveNext();
+							},1000);
+
+						}
+						else{
+							$scope.movesLeft--;
+						}
+
 					}
 					else {
 

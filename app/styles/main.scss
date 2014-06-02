@@ -66,6 +66,62 @@ body {
   margin: 30px 0;
 }
 
+.clash-btn {
+  @include transition(all 300ms);
+  width:2px;
+  height: 400px;
+
+  position: absolute;
+  right:20px;
+
+  top: -100px;
+  background-color: $pink;
+  box-shadow: 1px 0 1px rgba(0,0,0,0.3);
+  @include transform-origin(top center);
+  @include animation(swing 2s ease-in-out forwards);
+  &:hover{
+	@include transform-origin(top center);
+	@include animation(swing 2s ease-in-out forwards);
+  }
+
+
+  &.demo{
+	div span{
+	  background-color: white;
+	}
+	right:0;
+	top:-300px;
+  }
+
+  div {
+
+	position: relative;
+	height: 100%;
+	width: 100%;
+	span{
+	  position: absolute;
+	  display: block;
+	  width: 30px;
+	  height: 30px;
+	  border-radius: 50%;
+	  border: $pink solid 2px;
+	  bottom:-30px;
+	  left:-13px;
+	  background-color: $gray-light;
+	  cursor: pointer;
+	  box-shadow: 1px 0 1px rgba(0,0,0,0.3);
+	}
+  }
+
+  &.hideleft{
+	@include animation(bounceOutUp 1000ms ease-in forwards);
+	z-index: -10;
+  }
+
+
+
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
@@ -109,53 +165,7 @@ body {
 	}
   }
 
-  .clash-btn {
-	@include transition(all 300ms);
-	width:2px;
-	height: 400px;
 
-	position: absolute;
-	right:20px;
-
-	top: -100px;
-	background-color: $pink;
-	box-shadow: 1px 0 1px rgba(0,0,0,0.3);
-	@include transform-origin(top center);
-	@include animation(swing 2s ease-in-out forwards);
-	&:hover{
-	  @include transform-origin(top center);
-	  @include animation(swing 2s ease-in-out forwards);
-	}
-
-
-	div {
-
-	  position: relative;
-	  height: 100%;
-	  width: 100%;
-	  span{
-		position: absolute;
-		display: block;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		border: $pink solid 2px;
-		bottom:-30px;
-		left:-13px;
-		background-color: $gray-light;
-		cursor: pointer;
-		box-shadow: 1px 0 1px rgba(0,0,0,0.3);
-	  }
-	}
-
-	&.hideleft{
-	  @include animation(bounceOutUp 1000ms ease-in forwards);
-	  z-index: -10;
-	}
-
-
-
-  }
 
   .right-aside {
 	position: absolute;
@@ -248,6 +258,12 @@ body {
 	@include animation(benddown 1s forwards ease-in-out);
   }
 
+  &.demo{
+	height: 150px;
+	margin: auto;
+	text-align: center;
+  }
+
 }
 
 .squad-row {
@@ -269,7 +285,11 @@ body {
   color: white;
   line-height: 35px;
   font-size: 15px;
+  text-align: center;
 
+  &.demo{
+	position: static !important;
+  }
 
   &:hover, &.selected, {
 	box-shadow: 0px 0px 15px 5px rgba($green, .35);
@@ -418,13 +438,66 @@ body {
 }
 
 .mask{
-  background-color: rgba(0,0,0,0.3);
+
+
+  &.mask-gameover{
+	background-color: rgba(0,0,0,0.3);
+	z-index: 10;
+  }
+
+  &.mask-slide{
+
+	&.ng-hide-remove{
+	  @include transition(300ms ease-in all);
+	  opacity: 0;
+	}
+
+	&.ng-hide-remove-active{
+	  opacity: 1;
+	}
+
+	&.ng-hide-add{
+	  display:block!important;
+	  @include transition(300ms ease-in all);
+	  opacity: 1;
+
+	}
+	&.ng-hide-add-active{
+	  opacity: 0;
+	}
+	background-color: white;
+	z-index: 11;
+
+	.slide-content{
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+
+	  transform: translate(-50%, -50%);
+
+	  width: 80%;
+	  height: 50%;
+	  max-width: 730px;
+	  .explain{
+		text-align: center;
+		font-family: 'Lato', sans-serif;
+		font-size: 2em;
+		color:$gray;
+	  }
+
+	}
+
+  }
+
+
   position: fixed;
   top:0;
   left:0;
   bottom: 0;
   right: 0;
-  z-index: 10;
+
+
+
 
 }
 
@@ -508,6 +581,55 @@ body {
   border-top: 1px solid #999;
   opacity: 0.5;
   margin-left: 80px;
+}
+
+
+.guide-control{
+  z-index: 20;
+  position: fixed;
+  bottom: 20px;
+  left:50%;
+  margin-left:-200px;
+  width: 400px;
+  height: 100px;
+
+  ol,li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  }
+  .next-btn{
+	font-family: Lato,sans-serif;
+	font-size: 22px;
+	color:white;
+	background-color: $gray;
+	width: 100px;
+	display: block;
+	margin: auto;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+	border-radius: 3px;
+  }
+  .indicator {
+	text-align: center;
+	list-style: none;
+	width: 200px;
+	margin: auto;
+	margin-top: 10px;
+	li{
+	  margin: 5px;
+	  display: inline-block;
+	  width: 5px;
+	  height: 5px;
+	  background-color: $gray-light;
+	  border-radius: 50%;
+	  &.active{
+		background-color: $gray;
+	  }
+	}
+  }
 }
 
 /* Responsive: Portrait tablets and up */

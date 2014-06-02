@@ -6,7 +6,7 @@
 	<!--<h1 class="text-muted">Clash</h1>-->
 <!--</div>-->
 
-<div class="jumbotron ng-cloak">
+<div class="jumbotron ng-cloak" ng-show="currentGuide===-1">
 
 
 	<div class="right-aside score"><span>{{getScore()}}</span><span CLASS="score-alt">SCORE</span></div>
@@ -49,15 +49,77 @@
 		</div>
 
 		<div class="reset-btn" ng-click="resetGame()">retry</div>
+
 	</div>
 
 </div>
 
 
-<div class="mask" ng-show='gameOver'>
+<div class="mask mask-gameover" ng-show='gameOver'>
+
+
 
 </div>
 
+
+
+<div class="mask mask-slide" ng-show="currentGuide===0">
+
+	<div class="slide-content">
+		<div class="clash-btn demo"  ng-class="displayClass.guideAnimation(0)" ng-click="moveNext(0)"><div><span></span></div></div>
+		<p class="explain">Drag the switch rope to start a round of battle</p>
+
+	</div>
+
+</div>
+
+<div class="mask mask-slide" ng-show="currentGuide===1">
+
+	<div class="slide-content">
+		<div class="squad demo">
+			<div class="soldier {{soldier.className}}" ng-repeat="soldier in demoMatrix track by soldier.id" ng-style="getAbsPos(0,soldier)" ng-mouseleave="clearRangesHighlight()" ng-mouseenter="showInRanges(1,soldier)" ng-click="go(soldier)"
+				 ng-class="[displayClass.selected(soldier),displayClass.highlighted(soldier),displayClass.deathAnimation(soldier)]" >{{soldier.attack}}/{{soldier.health}}</div>
+		</div>
+		<p class="explain">Wonderful! <br/>Now click two adjacent circles. <br/> This will swap their position</p>
+
+
+	</div>
+
+</div>
+
+<div class="mask mask-slide" ng-show="currentGuide===2">
+
+	<div class="slide-content">
+		<div class="squad demo">
+			<div class="soldier spear  demo" >3/4</div>
+			<div class="soldier archer  demo" >4/2</div>
+			<div class="soldier tank  demo " >2/8</div>
+			<div class="soldier healer  demo" >2/3</div>
+		</div>
+		<p class="explain">3/4 means 3 attack and 4 health</p>
+		<p class="explain">Very straightforward, right? </p>
+
+
+	</div>
+
+</div>
+
+<div class="mask mask-slide" ng-show="currentGuide===3">
+
+	<div class="slide-content">
+		<p class="explain">Eliminate as many enemies as possible in each round.</p>
+		<p class="explain">Simple as that.  Now jump into Battle!</p>
+
+	</div>
+
+</div>
+
+<div class="guide-control"  ng-show="currentGuide!==-1">
+	<div class="next-btn" ng-click="moveNext()">Next</div>
+	<ol class="indicator">
+		<li ng-repeat="dot in guideFlags track by $index" ng-class="{'active':$index<=currentGuide}"></li>
+	</ol>
+</div>
 
 <!--<div class="footer">-->
 	<!--<p>by ruocaled</p>-->
