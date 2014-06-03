@@ -220,19 +220,27 @@ angular.module('clashApp')
 
 		$scope.getAbsPos = function (reverse, soldier) {
 			var style = {};
+
 			var leftMargin = 100;
 			if (!reverse) {
 
-				style.top = soldier.x * 60 + 'px';
+//				style.top = soldier.x * 60 + 'px';
+				style["-webkit-transform"] = 'translateY('+soldier.x * 60 + 'px'+')'
+
 
 			}
 
 			else {
-				style.bottom = soldier.x * 60 + 'px';
+//				style.bottom = soldier.x * 60 + 'px';
+				style["-webkit-transform"] = 'translateY('+soldier.x * -60 + 'px'+')'
 
 			}
 
 			style.left = soldier.y * 60 + leftMargin + 'px';
+//			style["-webkit-transform"] += ' translateX('+(soldier.y * 60 + leftMargin) + 'px'+')'
+
+			style["transform"] = style["-webkit-transform"];
+
 
 			return style;
 		};
@@ -319,13 +327,13 @@ angular.module('clashApp')
 				heal(enemySquad);
 
 				$scope.playSound();
-				battle();
+
 
 			}, 900);
 
 			$timeout(function () {
 
-
+				battle();
 			}, 1200);
 
 			$timeout(function () {
