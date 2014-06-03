@@ -3,6 +3,11 @@
 angular.module('clashApp')
 	.controller('MainCtrl', function ($scope, Squad, Dead, Spear, Healer, Tank, Archer, $timeout) {
 
+		if(navigator.userAgent.match(/iPad/i) != null){
+
+			document.title = 'Clash';
+		}
+
 		var snd = new Audio("sounds/clash.mp3"); // buffers automatically when created
 		var snd2 = new Audio("sounds/clash2.mp3");
 		var snd3 = new Audio("sounds/clash3.mp3");
