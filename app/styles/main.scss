@@ -339,19 +339,27 @@ body {
 
 
   &.ng-enter{
-	@include transition(300ms ease-in all);
-	//-webkit-transform: translateY(-2000px);
-	//-ms-transform: translateY(-2000px);
-	//transform: translateY(-2000px);
+	@include transition(all 300ms ease-in);
+	//left:105% !important;
+	-webkit-transform: translateY(0px) translateX(40px)  !important;
+
+	transform: translateY(0px) translateX(40px)  !important;
+
 	opacity: 0;
 
   }
 
-
+  //
   &.ng-enter-active{
+
+
 	//-webkit-transform: translateY(0px);
 	//-ms-transform: translateY(0px);
 	//transform: translateY(0px);
+	//left:0;
+	//-webkit-transform: translateY(0);
+	//
+	//transform: translateY(0);
 	opacity: 1;
   }
 

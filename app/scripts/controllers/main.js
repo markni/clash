@@ -85,7 +85,7 @@ angular.module('clashApp')
 		$scope.guideFlags = new Array($scope.MAXGUIDES);
 
 		$scope.resetGame = function () {
-			clickSfx.play();
+
 			selected = null;
 			targeted = null;
 			inRanges = [];
@@ -241,8 +241,8 @@ angular.module('clashApp')
 
 			}
 
-			style.left = soldier.y * 60 + leftMargin + 'px';
-//			style["-webkit-transform"] += ' translateX('+(soldier.y * 60 + leftMargin) + 'px'+')'
+//			style.left = soldier.y * 60 + leftMargin + 'px';
+			style["-webkit-transform"] += ' translateX('+(soldier.y * 60 + leftMargin) + 'px'+')'
 
 			style["transform"] = style["-webkit-transform"];
 
@@ -498,13 +498,13 @@ angular.module('clashApp')
 
 		$scope.reportPos = function (soldier) {
 			console.log(soldier.x, soldier.y);
-			clickSfx.play();
+//			clickSfx.play();
 
 		};
 
 		$scope.go = function (soldier) {
 
-			clickSfx.play();
+//			clickSfx.play();
 			if ($scope.movesLeft > 0) {
 				console.log(soldier);
 				if (selected) {
