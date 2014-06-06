@@ -42,6 +42,7 @@ angular.module('clashApp')
 		$scope.turn = 0;
 		$scope.movesLeft = 10;
 		$scope.MAXMOVESLEFT = $scope.movesLeft;
+		$scope.comments = 0;
 
 //		$scope.score = 0;
 		var combo = 0;

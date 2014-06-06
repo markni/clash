@@ -22,6 +22,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
   padding: 0.2em 0;
 }
 
+
+::selection {background:transparent;}
+::-moz-selection {background:transparent;}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -33,14 +37,12 @@ body {
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
-.footer {
+{
   padding-left: 15px;
   padding-right: 15px;
 
 }
-.footer{
-  text-align: right;
-}
+
 
 /* Custom page header */
 .header {
@@ -55,12 +57,7 @@ body {
   padding-bottom: 19px;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
+
 
 .container-narrow > hr {
   margin: 30px 0;
@@ -142,7 +139,7 @@ body {
 	@include transition(all 500ms);
 	&.gem-full {
 
-	  background-color: $blue;
+	  background-color: $blue-light;
 	}
 	&.gem-empty {
 	  background-color: $pink;
@@ -471,7 +468,9 @@ body {
 .mask{
 
 
-  &.mask-gameover{
+
+
+  &.mask-gameover,&.mask-comments{
 	background-color: rgba(0,0,0,0.3);
 	z-index: 10;
   }
@@ -532,6 +531,88 @@ body {
 
 }
 
+.footer{
+  color:white;
+  font-size: 30px;
+  font-family: Lato,sans-serif;
+
+
+
+  .menu-btn{
+	cursor: pointer;
+	position: fixed;
+	width:100%;
+	height: 100px;
+	right:-20px;
+	text-align: right;
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.35);
+
+	transition: all 300ms ease-in;
+	transform: translateZ(0);
+  }
+
+
+  .menu-btn:nth-of-type(1){
+	z-index: 2;
+	bottom: -80px;
+	padding-right: 80px;
+
+	background-color: $pink;
+
+	transform: rotate(-3deg);
+
+	&:hover{
+	  transform: rotate(-4deg);
+	}
+
+  }
+  .menu-btn:nth-of-type(2){
+	z-index: 1;
+	bottom: -60px;
+	padding-right: 120px;
+
+	background-color: $blue;
+
+	transform: rotate(-6deg);
+
+	&:hover{
+	  transform: rotate(-7deg);
+	}
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.comments{
+  z-index: 15;
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  padding: 30px;
+  position: fixed;
+  margin-top:-250px;
+  top:50%;
+  left:50%;
+  margin-left: -250px;
+  border-radius: 	15px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  overflow: -moz-scrollbars-none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &.ng-hide-remove{
+
+	@include  animation(bounceIn 0.5s ease-in-out forwards);
+  }
+  &.ng-hide-add{
+	display:block!important;
+	@include  animation(bounceOutDown 0.5s ease-in-out forwards);
+  }
+
+}
+
 .result {
   font-family: Lato, sans-serif !important;
   z-index:15;
@@ -543,7 +624,7 @@ body {
   margin-top:-140px;
   margin-left:-150px;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
   padding: 30px;
   &.ng-hide-remove{
@@ -674,7 +755,7 @@ body {
 /* Remove the padding we set earlier */
   .header,
   .marketing,
-  .footer {
+ {
 	padding-left: 0;
 	padding-right: 0;
   }
