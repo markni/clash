@@ -542,7 +542,8 @@ angular.module('clashApp')
 					}
 					else {
 
-						selected = targeted;
+						//if invalid swap, clear selection Todo:play a error sound here?
+						selected = null;
 						targeted = null;
 					}
 
