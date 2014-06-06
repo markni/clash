@@ -1,12 +1,24 @@
+//
+//$orange: #F25527;
+//$blue: #4dc1d9;
+//$blue-light : #BAD8BC;
+//$blue-dark : #4F6088;
+//$orange-light: #f2ead5;
+//$dark-red: #B64233;
+//$green: #B4C63B;
+//$pink:#E4837C;
+//$gray-light:#F0ECDB;
+//$gray : #999;
+
 
 $orange: #F25527;
-$blue: #48AFC1;
-$blue-light : #BAD8BC;
+$blue: tint(#4F6088,5);
+$blue-light : tint(#34c2c7,5);
 $blue-dark : #4F6088;
-$orange-light: #f2ead5;
+$orange-light: #eee;
 $dark-red: #B64233;
-$green: #B4C63B;
-$pink:#E4837C;
+$green:tint(#ff6b38,5);
+$pink:tint(#FF8F7E,5);
 $gray-light:#F0ECDB;
 $gray : #999;
 

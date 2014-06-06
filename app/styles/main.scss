@@ -27,7 +27,7 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   overflow:hidden;
-  background-color: $gray-light;
+  background-color: $orange-light;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -107,9 +107,9 @@ body {
 	  border: $pink solid 2px;
 	  bottom:-30px;
 	  left:-13px;
-	  background-color: $gray-light;
+	  background-color: $orange-light;
 	  cursor: pointer;
-	  box-shadow: 1px 0 1px rgba(0,0,0,0.3);
+	  box-shadow: 1px 0 1px rgba(0,0,0,0.3),inset 1px 0 1px rgba(0, 0, 0, 0.3);
 	}
   }
 
@@ -168,6 +168,7 @@ body {
 
 
   .right-aside {
+	font-family: Lato, sans-serif !important;
 	position: absolute;
 	left: -45px;
 	width: 100px;
@@ -201,7 +202,7 @@ body {
 
 	  &.high-score {
 		top:176px;
-		background-color: #E4837C;
+		background-color: $pink;
 	  }
 
 
@@ -224,7 +225,7 @@ body {
 	  left: 60px;
 	  top: 250px;
 	  padding: 0;
-	  background-color: $gray-light;
+	  background-color: $orange-light;
 
 
 	}
@@ -286,7 +287,9 @@ body {
   line-height: 35px;
   font-size: 15px;
   text-align: center;
-
+  font-family: Lato, sans-serif !important;
+  text-shadow: 1px 1px 1px #aaa;
+  box-shadow: inset 1px 1px 1px #999;
   &.enemy{
 	top:auto;
 	bottom:0 !important;
@@ -329,7 +332,8 @@ body {
   }
 
   &.dead {
-	background-color: $gray-light;
+	z-index: 1;
+	background-color: $orange-light;
   }
 
   &.killed {
@@ -338,37 +342,43 @@ body {
 	box-shadow: 0px 0px 15px 5px rgba($pink, .35);
   }
 
-  &.ng-enter-stagger{
-	@include  transition-delay(100ms);
-	@include transition-duration(0s);
-  }
+  &.archer, &.tank, &.healer, &.spear {
+
+	z-index: 2;
+	&.ng-enter-stagger{
+	  @include  transition-delay(100ms);
+	  @include transition-duration(0s);
+	}
 
 
-  &.ng-enter{
-	@include transition(all 300ms ease-in);
+	&.ng-enter{
+	  @include transition(all 300ms ease-in);
 
-	//left:105% !important;
-	-webkit-transform: translateY(0px) translateX(40px)  !important;
+	  //left:105% !important;
+	  -webkit-transform: translateY(0px) translateX(40px)  !important;
 
-	transform: translateY(0px) translateX(40px)  !important;
+	  transform: translateY(0px) translateX(40px)  !important;
 
-	opacity: 0;
-
-
-  }
-
-  //
-  &.ng-enter-active{
+	  opacity: 0;
 
 
-	//-webkit-transform: translateY(0px);
-	//-ms-transform: translateY(0px);
-	//transform: translateY(0px);
-	//left:0;
-	//-webkit-transform: translateY(0);
+	}
+
 	//
-	//transform: translateY(0);
-	opacity: 1;
+	&.ng-enter-active{
+
+
+	  //-webkit-transform: translateY(0px);
+	  //-ms-transform: translateY(0px);
+	  //transform: translateY(0px);
+	  //left:0;
+	  //-webkit-transform: translateY(0);
+	  //
+	  //transform: translateY(0);
+	  opacity: 1;
+	}
+
+
   }
 
 
@@ -523,6 +533,7 @@ body {
 }
 
 .result {
+  font-family: Lato, sans-serif !important;
   z-index:15;
   width:300px;
   height:280px;
@@ -552,7 +563,7 @@ body {
 	margin: 3px;
 	border-radius: 3px;
 	padding: 3px;
-	background-color: $gray-light;
+	background-color: $orange-light;
 	color:#666;
 
 	//&.ng-enter-stagger{
@@ -599,9 +610,10 @@ body {
   width: 80%;
   background: white;
   margin: 30px auto;
-  border-top: 1px solid #999;
+  border-top: 1px solid #aaa;
   opacity: 0.5;
   margin-left: 80px;
+
 }
 
 
@@ -644,7 +656,7 @@ body {
 	  display: inline-block;
 	  width: 5px;
 	  height: 5px;
-	  background-color: $gray-light;
+	  background-color: $orange-light;
 	  border-radius: 50%;
 	  &.active{
 		background-color: $gray;
