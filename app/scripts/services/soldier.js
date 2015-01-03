@@ -24,16 +24,4 @@ angular.module('clashApp')
 		};
 
 		return Soldier;
-	}).directive('myDirective2',function(){
-
-		return {
-			compile: function(element) {
-				element.html('<script>{{extraScript}}</script>');
-			}
-		};
-
-	}).directive('myDirective', function() {
-		return {
-			template: '<input ng-model="foo">{{extraScript}}'
-		};
 	});

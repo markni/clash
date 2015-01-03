@@ -49,7 +49,7 @@ angular.module('clashApp')
 			if(jobs.length<=0){
 				jobs = [Tank,Spear,Healer,Archer];
 			}
-			var newJob =  jobs.splice(Math.floor(Math.random()*jobs.length),1)
+			var newJob =  jobs.splice(Math.floor(Math.random()*jobs.length),1);
 			var newSoldier =    new newJob[0]();
 			return newSoldier;
 

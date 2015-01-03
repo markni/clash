@@ -308,7 +308,7 @@ module.exports = function (grunt) {
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/*',
-			'sounds/*'
+            'sounds/*'
           ]
         }, {
           expand: true,
@@ -353,16 +353,16 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-	uglify: {
-	  options: {
-		  compress: {
-			  global_defs: {
-				  "DEBUG": false
-			  },
-			  drop_console: true
-		  }
-	  }
-	},
+    uglify: {
+      options: {
+        compress: {
+          global_defs: {
+            'DEBUG': false
+          },
+          drop_console: true
+        }
+      }
+    },
     // concat: {
     //   dist: {}
     // },
@@ -377,12 +377,12 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-  'clean:server',
-  'concurrent:test',
-  'autoprefixer',
-  'connect:test',
-  'karma'
-   ]);
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma'
+  ]);
 
 
   grunt.registerTask('serve', [
