@@ -1,7 +1,6 @@
 Clash
 =====
-
-![Clash](http://nagi.ca/u/c/screen-shot.png)
+![Clash](https://cloud.githubusercontent.com/assets/1743179/5601872/25727084-92d7-11e4-81b2-5be383cf329d.png)
 
 *Clash* is an original html5 strategy game. Given limited amount of soldiers with different abilities, the goal of the game is to eliminate as many enemies as possible using strategical thinking.
 
