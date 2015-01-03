@@ -361,17 +361,9 @@ body {
 
 	}
 
-	//
+
 	&.ng-enter-active{
 
-
-	  //-webkit-transform: translateY(0px);
-	  //-ms-transform: translateY(0px);
-	  //transform: translateY(0px);
-	  //left:0;
-	  //-webkit-transform: translateY(0);
-	  //
-	  //transform: translateY(0);
 	  opacity: 1;
 	}
 
@@ -384,80 +376,7 @@ body {
 	opacity: 0;
   }
 
-  //&.ng-move{
-	//-webkit-transform:scaleX(8);
-	//background-color: red;
-  //}
-  //
-  //&.ng-move-active{
-	//background-color: yellow;
-  //
-  //}
 
-  ////ng-animte parts
-  //
-  //&.ng-enter-stagger{
-	//@include  transition-delay(3s);
-	//@include transition-duration(0s);
-  //}
-  //
-  //&.ng-enter{
-	//@include transition(5s linear all);
-	//opacity: 0;
-  //
-  //
-  //
-  //}
-  //
-  //&.ng-enter-active{
-	//opacity: 1;
-  //}
-  //&.ng-leave{
-  //
-	//opacity: 1;
-  //
-  //
-  //
-  //}
-  //
-  //&.ng-leave-active{
-  //
-	//opacity: 0;
-  //}
-
-  //
-  //.soldier-inner-wrapper {
-	//width: 100%;
-	//height: 100%;
-	//position: relative;
-  //
-	//.attack,.health{
-	//  position: absolute;
-	//  border-radius: 50%;
-	//  border: white 2px solid;
-  //
-	//  display: block;
-	//  width: 20px;
-	//  height: 20px;
-	//  font-size: 10px;
-	//  text-align: center;
-	//  line-height: 16px;
-	//  background-color: $gray;
-	//}
-	//.attack{
-	//  bottom: -5px;
-	// left:-10px;
-	//  background-color: $pink;
-	//}
-  //
-	//.health{
-	//  top: -5px;
-	//  right:-10px;
-	//  background-color: $green;
-  //
-  //
-	//}
-  //}
 
 }
 .squad-row{

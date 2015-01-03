@@ -66,7 +66,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '192.168.1.142',
+        hostname: '192.168.1.133',
         livereload: 35729
       },
       livereload: {
@@ -359,7 +359,7 @@ module.exports = function (grunt) {
 			  global_defs: {
 				  "DEBUG": false
 			  },
-			  drop_console: true,
+			  drop_console: true
 		  }
 	  }
 	},
@@ -376,35 +376,26 @@ module.exports = function (grunt) {
     }
   });
 
-
-  grunt.registerTask('serve', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
-
-    grunt.task.run([
+  grunt.registerTask('serve', [
       'clean:server',
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
       'watch'
-    ]);
-  });
-
-  grunt.registerTask('server', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
-  });
-
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
-  ]);
-
+    ]
+  );
+  grunt.registerTask('serve:dist', [
+      'build',
+      'connect:dist:keepalive',
+      'clean:server',
+      'bowerInstall',
+      'concurrent:server',
+      'autoprefixer',
+      'connect:livereload',
+      'watch'
+    ]
+  );
   grunt.registerTask('build', [
     'clean:dist',
     'bowerInstall',
@@ -417,7 +408,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'rev',
+    //'rev',
     'usemin',
     'htmlmin'
   ]);
