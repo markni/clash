@@ -1,4 +1,4 @@
-Clash
+Clash [![Build Status](https://travis-ci.org/markni/clash.svg?branch=master)](https://travis-ci.org/markni/clash)
 =====
 ![Clash](https://cloud.githubusercontent.com/assets/1743179/5601872/25727084-92d7-11e4-81b2-5be383cf329d.png)
 
