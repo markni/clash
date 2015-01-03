@@ -6,9 +6,6 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 @import "mixins";
 @import "animations";
 
-// bower:scss
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
 
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -27,11 +24,16 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 ::-moz-selection {background:transparent;}
 
 /* Space out content a bit */
+html{
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   overflow:hidden;
-  background-color: $orange-light;
+  background-color: $white-dark;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -104,7 +106,7 @@ body {
 	  border: $pink solid 2px;
 	  bottom:-30px;
 	  left:-13px;
-	  background-color: $orange-light;
+	  background-color: $white-dark;
 	  cursor: pointer;
 	  box-shadow: 1px 0 1px rgba(0,0,0,0.3),inset 1px 0 1px rgba(0, 0, 0, 0.3);
 	}
@@ -222,7 +224,7 @@ body {
 	  left: 60px;
 	  top: 250px;
 	  padding: 0;
-	  background-color: $orange-light;
+	  background-color: $white-dark;
 
 
 	}
@@ -330,7 +332,7 @@ body {
 
   &.dead {
 	z-index: 1;
-	background-color: $orange-light;
+	background-color: $white-dark;
   }
 
   &.killed {
@@ -563,7 +565,7 @@ body {
 	margin: 3px;
 	border-radius: 3px;
 	padding: 3px;
-	background-color: $orange-light;
+	background-color: $white-dark;
 	color:#666;
 
 	//&.ng-enter-stagger{
@@ -656,7 +658,7 @@ body {
 	  display: inline-block;
 	  width: 5px;
 	  height: 5px;
-	  background-color: $orange-light;
+	  background-color: $white-dark;
 	  border-radius: 50%;
 	  &.active{
 		background-color: $gray;
