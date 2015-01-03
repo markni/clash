@@ -251,12 +251,6 @@ angular.module('clashApp')
 			return style;
 		};
 
-		$scope.awesomeThings = [
-			squad.w,
-			'AngularJS',
-			'Karma'
-		];
-
 		$scope.runClashAnimation = function () {
 
 			$scope.clashAnimationOn = true;
