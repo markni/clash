@@ -53,8 +53,15 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
 
+    browsers: process.env.TRAVIS ? ['ChromeTravis'] : ['Chrome'],
+
+    customLaunchers: {
+      ChromeTravis: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

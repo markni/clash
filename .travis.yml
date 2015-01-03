@@ -1,8 +1,13 @@
 language: node_js
 before_install: gem install compass
 node_js:
-  - '0.8'
+  - '0.11'
   - '0.10'
+env:
+  - CHROME_BIN=chromium-browser
+  - DISPLAY=:99.0
+  - NACL_SDK_ROOT=$PWD/out/nacl_sdk/pepper_canary
 before_script:
+  - sh -e /etc/init.d/xvfb start
   - 'npm install -g bower grunt-cli'
   - 'bower install'
